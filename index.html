@@ -18,6 +18,7 @@ function preload() {
     game.load.image('starfield', 'fon2.png');
     game.load.image('background', 'fon.png');
     game.load.audio('music','music.mp3')
+    game.load.audio('musicx','musicx.mp3')
 
 }
 
@@ -43,7 +44,7 @@ var liveText;
 
 function create() {
     music = game.add.audio('music');
-
+	musicx = game.add.audio('musicx');
     music.play();
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -212,7 +213,8 @@ function collisionHandler (bullet, alien) {
         enemyBullets.callAll('kill',this);
         stateText.text = " You Won, \n Click to restart";
         stateText.visible = true;
-        music.stop()
+        music.stop();
+	musicx.start();
 
         //the "click to restart" handler
         game.input.onTap.addOnce(restart,this);
